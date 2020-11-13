@@ -1,0 +1,36 @@
+{% extends 'main/general.html' %}
+{% block main_section %}
+<form class="form-make_answer" action="send_answer/" method="post">
+  <br>
+  <div class="text-left mb-4">
+    <h1 class="h3 mb-3 ml-3 font-weight-normal">Ответ пользователю</h1>
+    <hr>
+  </div>
+
+  <div class="form-label-group mb-3 col-2">
+    <input type="hidden" id="inputTG_ID" class="form-control" placeholder="Телеграмм ID" required="" name="tg_id" value="{{ tg_id }}">
+    <label type="id" id="labelID" class="form-control" placeholder="Телеграмм ID" required="" autofocus="" name="tg_id" value="{{ tg_id }}">{{ tg_id }}</label>
+  </div>
+
+  <div class="form-label-group mb-3 col-5">
+    <input type="hidden" id="inputQuestion" class="form-control" placeholder="Дата" required="" name="question" value="{{ question }}">
+    <label type="text" id="labelQuestion" class="form-control" name="question" value="{{ question }}">{{ question }}</label>
+  </div>
+
+  <div>
+    <input type="hidden" id="inputID" class="form-control" placeholder="id" required="" name="id_bd" value="{{ id_bd }}">
+  </div>
+
+  <div class="form-label-group col-5 mb-3">
+    <textarea type="text" id="inputAnswer" class="form-control" placeholder="Ответ" required="" name="answer"></textarea>
+  </div>
+
+<!--  <div class="form-label-group mb-3 col-4">-->
+<!--    <input type="date" id="inputPosition" class="form-control" placeholder="Дата" required="" name="date">-->
+<!--  </div>-->
+
+  <button class="btn btn-primary btn-block col-2 ml-3" type="submit">Ответить</button>
+<!--  <button class="btn btn-secondary btn-block col-3" type="submit">Отправить подтверждение</button>-->
+
+</form>
+{% endblock main_section%}

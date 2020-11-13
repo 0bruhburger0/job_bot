@@ -1,0 +1,83 @@
+{% extends 'main/general.html' %}
+
+{% block main_section %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Резюме</h1>
+</div>
+
+<!--Действия-->
+<form action="del/" id="changelist-form" method="post" novalidate>
+    <div class="actions mb-3">
+        <input type="hidden" name="select_across" value="0" class="select-across">
+        <button type="submit" class="btn btn-sm btn-outline-secondary" name="index" value="0">Удалить выбранных</button>
+    </div>
+
+
+    <!--Таблица-->
+    <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>
+
+                  </th>
+                  <th>TG ID</th>
+                  <th>Желаемая должность</th>
+                  <th>Контакты</th>
+                  <th>Желаемая з/п</th>
+                  <th>Опыт</th>
+                  <th>Образование</th>
+                  <th>Проф. навыки</th>
+                  <th>Рекомендации</th>
+                  <th>Личные качества</th>
+                  <th>Портфолио</th>
+                  <th>Оплата</th>
+                  <th>Статус</th>
+                </tr>
+              </thead>
+
+              {% for r in resume%}
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="form-check">
+                        <input type="checkbox" name="some_name" value="{{ r.tg_id }}" unchekced>
+                    </div>
+</form>
+                  </td>
+                  <td>{{ r.tg_id }}</td>
+                  <td>{{ r.position }}</td>
+                  <td>{{ r.contacts }}</td>
+                  <td>{{ r.money }}</td>
+                  <td>{{ r.experience }}</td>
+                  <td>{{ r.education }}</td>
+                  <td>{{ r.skills }}</td>
+                  <td>{{ r.recomendations }}</td>
+                  <td>{{ r.info }}</td>
+                  <td>{{ r.portfolio_url }}</td>
+                  <td>
+                      {% if r.payed == True %}
+                        <p class="text-primary">ДА</p>
+                      {% else %}
+                        <p class="text-danger">НЕТ</p>
+                      {% endif %}
+                  </td>
+                  <td>
+                      <form action="send_resume/" id="confirm-form" method="post" novalidate>
+                      {% if r.payed == False %}
+                          <p class="text-primary">Не оплачено</p>
+                      {% elif r.payed == True %}
+                          <input type="hidden" name="somes" class="update-across" value="{{ r.tg_id }}">
+                          <button name="some" type="submit" class="btn btn-primary btn-sm" value="{{ r.tg_id }}">Публикация</button>
+                      {% elif r.status == True %}
+                          <p class="text-primary">Опубликовано</p>
+                      {% endif %}
+                      </form>
+                  </td>
+                </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+    </div>
+<!--</form>-->
+{% endblock main_section%}
